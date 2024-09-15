@@ -11,6 +11,12 @@ app.use(express.json());
 app.use(xss());
 app.use(mongoSanitize());
 
+app.use('/', (req, res) => {
+  const con =
+    '<h1> This is Intergalactic Trade Network API for CirclePe Round </h1><br> <h2>Please use /api/:endpoint_name to start using the API</h2>';
+  res.send(con);
+});
+
 app.use('/api', routes);
 const PORT = process.env.PORT || 3000;
 const clientOptions = {
