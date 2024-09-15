@@ -18,13 +18,23 @@ const getTrade = catchAsync(async (req, res) => {
   });
 });
 
+const getTradeByID = catchAsync(async (req, res) => {
+  const trade = await tradeService.getTradeById(req.params.id);
+  res.send({
+    code: httpStatusCodes.StatusCodes.OK,
+    data: trade,
+  });
+});
+
 const deleteTrade = catchAsync(async (req, res) => {
   await tradeService.deleteTrade(req.params.id);
   res.status(httpStatusCodes.StatusCodes.NO_CONTENT).send();
+  res.send('Cargo Deleted Successfully!');
 });
 
 module.exports = {
   createTrade,
   getTrade,
   deleteTrade,
+  getTradeByID,
 };

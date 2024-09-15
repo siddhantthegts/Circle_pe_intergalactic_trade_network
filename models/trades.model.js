@@ -1,4 +1,5 @@
 const { default: mongoose } = require('mongoose');
+const toJSON = require('./plugin/toJson');
 
 const tradeSchema = mongoose.Schema({
   type: {
@@ -34,6 +35,6 @@ const tradeSchema = mongoose.Schema({
     type: String,
   },
 });
-
+tradeSchema.plugin(toJSON);
 const Trade = mongoose.model('Trade', tradeSchema);
 module.exports = Trade;

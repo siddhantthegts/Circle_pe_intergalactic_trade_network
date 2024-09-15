@@ -1,26 +1,28 @@
-const { HttpStatusCode } = require('axios');
-const { tradeModel } = require('../models');
+const { Trade } = require('../models');
 const ApiError = require('../utils/ApiError');
+const httpStatusCode = require('http-status-codes');
+
 const createTrade = async (tradeBody) => {
   return await tradeModel.create(tradeBody);
 };
 
 const getTrade = async (trade) => {
-  const tradeList = await tradeModel.find({});
+  const tradeList = await Trade.find({});
 
   return tradeList;
 };
 
 const getTradeById = async (id) => {
-  return tradeModel.findById(id);
+  return Trade.findById(id);
 };
 
-const deleteTrade = async (id) => {
-  const tradeById = await getTradeById(id);
+const deleteTrade = async (tradeid) => {
+  const tradeById = await getTradeById(tradeid);
+  console.log(tradeid);
   if (!tradeById) {
-    throw new ApiError(HttpStatusCode.NotFound, 'Trade not found');
+    throw new ApiError(httpStatusCode.StatusCodes.NOT_FOUND, 'Trade not found');
   }
-  tradeById.deleteOne();
+  await tradeById.deleteOne();
   return tradeById;
 };
 

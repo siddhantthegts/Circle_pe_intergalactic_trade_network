@@ -12,6 +12,7 @@ router
 
 router
   .route('/:id')
-  .post(validate(tradesValidation.deleteTrade), tradeController.deleteTrade);
+  .post(validate(tradesValidation.deleteTrade), tradeController.deleteTrade)
+  .get(tradeController.getTradeByID);
 
 module.exports = router;
