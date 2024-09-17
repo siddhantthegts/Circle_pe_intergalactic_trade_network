@@ -1,6 +1,7 @@
 const tradeRoute = require('./trade.route');
 const testRoute = require('./test.route');
 const cargoRoute = require('./cargo.route');
+const rootRoute = require('./default.route');
 const express = require('express');
 const router = express.Router();
 
@@ -16,6 +17,10 @@ const defaultRoute = [
   {
     path: '/cargo',
     route: cargoRoute,
+  },
+  {
+    path: '/',
+    route: rootRoute,
   },
 ];
 
